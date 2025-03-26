@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RepositoriesComponent } from './repositories.component';
 import { routes } from './repositories.routes';
 import { RouterModule } from '@angular/router';
+import { RepositoriesFiltersComponent } from './repositories-filters/repositories-filters.component';
 
 
 
@@ -12,7 +13,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    RepositoriesFiltersComponent
   ]
 })
 export class RepositoriesModule {

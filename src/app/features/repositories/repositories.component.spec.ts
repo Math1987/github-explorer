@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepositoriesComponent } from './repositories.component';
+import { RepositoriesFiltersComponent } from './repositories-filters/repositories-filters.component';
 
 describe('RepositoriesComponent', () => {
   let component: RepositoriesComponent;
@@ -8,7 +9,8 @@ describe('RepositoriesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RepositoriesComponent]
+      declarations: [RepositoriesComponent],
+      imports: [RepositoriesFiltersComponent]
     })
     .compileComponents();
 

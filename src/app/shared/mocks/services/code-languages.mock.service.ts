@@ -12,4 +12,8 @@ export class CodeLanguagesMockEmptyService {
     return of([])
   }
 
+  fetchCodeLanguages(): Observable<any> {
+    return of({})
+  }
+
 }

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RepositoriesFiltersComponent } from './repositories-filters/repositories-filters.component';
 import { RepositoriesComponent } from './repositories.component';
 import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RepositoriesComponent', () => {
   let component: RepositoriesComponent;
@@ -12,10 +13,7 @@ describe('RepositoriesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RepositoriesComponent],
-      imports: [RepositoriesFiltersComponent, BrowserAnimationsModule],
-      providers: [
-        { provide: HttpClient, useValue: {} },
-      ]
+      imports: [RepositoriesFiltersComponent, BrowserAnimationsModule, HttpClientTestingModule]
     })
       .compileComponents();
 

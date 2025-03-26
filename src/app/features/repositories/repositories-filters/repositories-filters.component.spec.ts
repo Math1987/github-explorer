@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RepositoriesFiltersComponent } from './repositories-filters.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RepositoriesFiltersComponent } from './repositories-filters.component';
 
 describe('RepositoriesFiltersComponent', () => {
   let component: RepositoriesFiltersComponent;
@@ -19,10 +18,8 @@ describe('RepositoriesFiltersComponent', () => {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
-        MatInputModule
-      ],
-      providers: [
-        { provide: HttpClient, useValue: {} },
+        MatInputModule,
+        HttpClientTestingModule
       ]
     })
       .compileComponents();

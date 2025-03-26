@@ -35,7 +35,6 @@ export class CodeLanguagesAutocompleteComponent {
   codeLanguages!: Signal<string[]>;
   filteredLanguages = signal<string[]>([]);
   control = new FormControl('');
-  disabled = false;
 
   onChange: any = () => { };
   onTouch: any = () => { };
@@ -82,15 +81,6 @@ export class CodeLanguagesAutocompleteComponent {
 
   registerOnTouched(fn: any): void {
     this.onTouch = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-    if (isDisabled) {
-      this.control.disable();
-    } else {
-      this.control.enable();
-    }
   }
 
   ngOnDestroy(): void {

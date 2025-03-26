@@ -49,7 +49,10 @@ export class RepositoriesTableComponent implements TableInterface<RepositoryTabl
     ).subscribe();
   }
 
-  onPageChange(pageEvent: PageEvent): void {}
+  onPageChange(pageEvent: PageEvent): void {
+    this.pageSize.set(pageEvent.pageSize);
+    this.loadData(pageEvent.pageIndex);
+  }
 
   private initSearch(){
     effect(() => {

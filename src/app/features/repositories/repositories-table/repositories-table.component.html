@@ -22,3 +22,12 @@
   <tr mat-header-row *matHeaderRowDef="['name', 'avatar', 'creationDate']"></tr>
   <tr mat-row *matRowDef="let row; columns: ['name', 'avatar', 'creationDate'];"></tr>
 </table>
+
+<mat-paginator
+  [length]="totalRows()"
+  [pageSize]="pageSize()"
+  [pageIndex]="currentPage()"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onPageChange($event)"
+  aria-label="Select page">
+</mat-paginator>

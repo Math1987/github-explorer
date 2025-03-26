@@ -4,7 +4,7 @@ import { RepositoriesComponent } from './repositories.component';
 import { routes } from './repositories.routes';
 import { RouterModule } from '@angular/router';
 import { RepositoriesFiltersComponent } from './repositories-filters/repositories-filters.component';
-
+import { RepositoriesTableComponent } from './repositories-table/repositories-table.component';
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import { RepositoriesFiltersComponent } from './repositories-filters/repositorie
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    RepositoriesFiltersComponent
+    RepositoriesFiltersComponent,
+    RepositoriesTableComponent
   ]
 })
 export class RepositoriesModule {

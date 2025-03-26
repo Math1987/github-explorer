@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 
 describe('RepositoriesFiltersComponent', () => {
   let component: RepositoriesFiltersComponent;
@@ -18,6 +20,9 @@ describe('RepositoriesFiltersComponent', () => {
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule
+      ],
+      providers: [
+        { provide: HttpClient, useValue: {} },
       ]
     })
       .compileComponents();

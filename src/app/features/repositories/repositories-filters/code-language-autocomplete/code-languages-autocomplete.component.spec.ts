@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { CodeLanguagesMockEmptyService } from '@/app/shared/mocks/services/code-languages.mock.service';
+import { CodeLanguagesService } from '@/app/shared/services/code-languages.service';
+import { HttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CodeLanguagesAutocompleteComponent } from './code-languages-autocomplete.component';
 
 describe('CodeLanguageAutocompleteComponent', () => {
@@ -8,7 +12,11 @@ describe('CodeLanguageAutocompleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CodeLanguagesAutocompleteComponent]
+      imports: [CodeLanguagesAutocompleteComponent, BrowserAnimationsModule],
+      providers: [
+        { provide: HttpClient, useValue: {} },
+        { provide: CodeLanguagesService, useClass: CodeLanguagesMockEmptyService }
+      ]
     })
     .compileComponents();
 
@@ -20,4 +28,5 @@ describe('CodeLanguageAutocompleteComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

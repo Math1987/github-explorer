@@ -1,1 +1,13 @@
-<p>code-language-autocomplete works!</p>
+<div class="language-autocomplete">
+  <mat-form-field appearance="outline">
+    <mat-label>Search Language</mat-label>
+    <input test-selector="filters-code-language-input" type="text" matInput [formControl]="control" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <ng-container *ngFor="let language of filteredLanguages()">
+        <mat-option [value]="language">
+          {{ language }}
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

@@ -4,8 +4,9 @@ import { FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { Subject } from 'rxjs';
+import { map, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { CodeLanguagesService } from '@/app/shared/services/code-languages.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-code-language-autocomplete',
@@ -39,26 +40,62 @@ export class CodeLanguagesAutocompleteComponent {
   onChange: any = () => { };
   onTouch: any = () => { };
 
-  constructor(private codeLanguagesService: CodeLanguagesService) {}
-
-  ngOnInit() {}
-
-  private initControl(){}
-
-  private listenAndPerformChanges(){}
-
-  private _filter(value: string): string[] {
-    return [];
+  constructor(private codeLanguagesService: CodeLanguagesService) {
+    this.codeLanguages = toSignal(this.codeLanguagesService.getCodeLanguages()) as Signal<string[]>;
   }
 
-  writeValue(value: string): void {}
+  ngOnInit() {
+    this.initControl();
+    this.listenAndPerformChanges();
+  }
 
-  registerOnChange(fn: any): void {}
+  private initControl(){
+    this.control.valueChanges.pipe(
+      takeUntil(this.destroy$),
+      startWith(''),
+      map(value => this._filter(value || '')),
+      tap(value => this.filteredLanguages.set(value))
+    ).subscribe();
+  }
 
-  registerOnTouched(fn: any): void {}
+  private listenAndPerformChanges(){
+    this.control.valueChanges.subscribe(value => {
+      this.onChange(value);
+      this.onTouch();
+    });
+  }
 
-  setDisabledState(isDisabled: boolean): void {}
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.codeLanguages()?.filter(lang =>
+      lang.toLowerCase().includes(filterValue)
+    ) || [];
+  }
 
-  ngOnDestroy(): void {}
+  writeValue(value: string): void {
+    this.control.setValue(value, { emitEvent: false });
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+    if (isDisabled) {
+      this.control.disable();
+    } else {
+      this.control.enable();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
 }

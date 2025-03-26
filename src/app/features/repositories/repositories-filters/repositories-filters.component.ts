@@ -3,10 +3,12 @@ import { RepositoriesFiltersForm } from '@/app/shared/models/repositories.filter
 import { RepositoriesFilters } from '@/app/shared/models/repositories.filters.model';
 import { Component, OnDestroy, output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { map, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, map, Subject, takeUntil, tap } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CodeLanguagesAutocompleteComponent } from './code-language-autocomplete/code-languages-autocomplete.component';
+
+export const DEBOUNCE_TIME = 500;
 
 @Component({
   selector: 'app-repositories-filters',
@@ -48,6 +50,7 @@ export class RepositoriesFiltersComponent implements OnDestroy {
     this.formGroup.valueChanges.pipe(
       takeUntil(this.destroy$),
       map(values => extractFilters(values)),
+      debounceTime(DEBOUNCE_TIME),
       tap(filters => this.updateFilters(filters))
     ).subscribe()
   }

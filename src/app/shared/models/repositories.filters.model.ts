@@ -1,5 +1,5 @@
 export interface RepositoriesFilters {
-  name: string;
+  name?: string;
   language?: string;
   stars?: number;
 }

@@ -1,7 +1,7 @@
 import { FormControl } from "@angular/forms";
 
 export interface RepositoriesFiltersForm {
-  name: FormControl<string>;
-  language?: FormControl<string>;
-  stars?: FormControl<number>;
+  name: FormControl<string | null>;
+  language: FormControl<string | null>;
+  stars: FormControl<number | null>;
 }

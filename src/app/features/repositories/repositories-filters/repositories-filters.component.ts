@@ -1,8 +1,9 @@
+import { extractFilters } from '@/app/shared/adapters/repositories.filters.adapters';
 import { RepositoriesFiltersForm } from '@/app/shared/models/repositories.filters.form.model';
 import { RepositoriesFilters } from '@/app/shared/models/repositories.filters.model';
 import { Component, OnDestroy, output } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { map, Subject, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-repositories-filters',
@@ -13,20 +14,37 @@ import { Subject } from 'rxjs';
   templateUrl: './repositories-filters.component.html',
   styleUrl: './repositories-filters.component.scss'
 })
-export class RepositoriesFiltersComponent implements OnDestroy{
+export class RepositoriesFiltersComponent implements OnDestroy {
 
   destroy$ = new Subject<void>();
   formGroup!: FormGroup<RepositoriesFiltersForm>;
   filter = output<RepositoriesFilters>();
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
+  constructor(private formBuilder: FormBuilder) {
+    this.initFormGroup();
+    this.listenAndPerformChanges();
+  }
 
-  initFormGroup(){}
+  initFormGroup() {
+    this.formGroup = this.formBuilder.group({
+      name: '',
+      language: '',
+      stars: 0
+    })
+  }
 
-  updateFilters(value: RepositoriesFilters){}
+  updateFilters(filters: RepositoriesFilters) {
+    this.filter.emit(filters)
+  }
 
-  ngOnDestroy(): void {}
+  private listenAndPerformChanges(){
+    this.formGroup.valueChanges.pipe(
+      takeUntil(this.destroy$),
+      map(values => extractFilters(values)),
+      tap(filters => this.updateFilters(filters))
+    ).subscribe()
+  }
+
+  ngOnDestroy(): void { }
 
 }

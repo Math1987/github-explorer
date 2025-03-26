@@ -20,4 +20,11 @@ describe('RepositoriesFiltersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit filter', () => {
+    spyOn(component.filter, 'emit');
+    component.updateFilters({name: '', language: '', stars: 0})
+    expect(component.filter.emit).toHaveBeenCalledWith({name: '', language: '', stars: 0})
+  })
+
 });

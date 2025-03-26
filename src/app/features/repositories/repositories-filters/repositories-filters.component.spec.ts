@@ -45,4 +45,12 @@ describe('RepositoriesFiltersComponent', () => {
     expect(component.filter.emit).toHaveBeenCalledWith({ name: 'test', language: '', stars: 0 })
   })
 
+  it('should emit filter with stars values after typing in the input', () => {
+    spyOn(component.filter, 'emit');
+    const input = fixture.debugElement.query(By.css('input[test-selector="filters-stars-input"]')).nativeElement;
+    input.value = 10;
+    input.dispatchEvent(new Event('input'));
+    expect(component.filter.emit).toHaveBeenCalledWith({ name: '', language: '', stars: 10 })
+  })
+
 });

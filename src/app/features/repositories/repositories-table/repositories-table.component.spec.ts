@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepositoriesTableComponent } from './repositories-table.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RepositoriesTableComponent', () => {
   let component: RepositoriesTableComponent;
@@ -9,7 +11,7 @@ describe('RepositoriesTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RepositoriesTableComponent, HttpClientTestingModule]
+      imports: [CommonModule, BrowserAnimationsModule, RepositoriesTableComponent, HttpClientTestingModule]
     })
     .compileComponents();
 

@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepositoriesFiltersComponent } from './repositories-filters.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
 
 describe('RepositoriesFiltersComponent', () => {
   let component: RepositoriesFiltersComponent;
@@ -8,9 +13,14 @@ describe('RepositoriesFiltersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RepositoriesFiltersComponent]
+      imports: [RepositoriesFiltersComponent,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(RepositoriesFiltersComponent);
     component = fixture.componentInstance;
@@ -23,8 +33,16 @@ describe('RepositoriesFiltersComponent', () => {
 
   it('should emit filter', () => {
     spyOn(component.filter, 'emit');
-    component.updateFilters({name: '', language: '', stars: 0})
-    expect(component.filter.emit).toHaveBeenCalledWith({name: '', language: '', stars: 0})
+    component.updateFilters({ name: '', language: '', stars: 0 })
+    expect(component.filter.emit).toHaveBeenCalledWith({ name: '', language: '', stars: 0 })
+  })
+
+  it('should emit filter with name values after typing in the input', () => {
+    spyOn(component.filter, 'emit');
+    const input = fixture.debugElement.query(By.css('input[test-selector="filters-name-input"]')).nativeElement;
+    input.value = 'test';
+    input.dispatchEvent(new Event('input'));
+    expect(component.filter.emit).toHaveBeenCalledWith({ name: 'test', language: '', stars: 0 })
   })
 
 });

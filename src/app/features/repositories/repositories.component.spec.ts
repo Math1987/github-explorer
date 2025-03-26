@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RepositoriesComponent } from './repositories.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RepositoriesFiltersComponent } from './repositories-filters/repositories-filters.component';
+import { RepositoriesComponent } from './repositories.component';
 
 describe('RepositoriesComponent', () => {
   let component: RepositoriesComponent;
@@ -10,9 +11,9 @@ describe('RepositoriesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RepositoriesComponent],
-      imports: [RepositoriesFiltersComponent]
+      imports: [RepositoriesFiltersComponent, BrowserAnimationsModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(RepositoriesComponent);
     component = fixture.componentInstance;

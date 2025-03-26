@@ -11,3 +11,14 @@ export const extractFilters = (filters: PartialRepositoriesFilters): Repositorie
     stars: filters.stars || 0
   }
 }
+
+export const extractQuery = (filters: RepositoriesFilters) => {
+  let query = filters.name??'';
+  if(filters.language){
+    query += ' language:' + filters.language;
+  }
+  if(filters.stars){
+    query += ` stars:>=${filters.stars}`;
+  }
+  return query;
+}

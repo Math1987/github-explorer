@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepositoriesTableComponent } from './repositories-table.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RepositoriesTableComponent', () => {
   let component: RepositoriesTableComponent;
@@ -8,7 +9,7 @@ describe('RepositoriesTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RepositoriesTableComponent]
+      imports: [RepositoriesTableComponent, HttpClientTestingModule]
     })
     .compileComponents();
 

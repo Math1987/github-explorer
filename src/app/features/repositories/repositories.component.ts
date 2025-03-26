@@ -1,5 +1,5 @@
 import { RepositoriesFilters } from '@/app/shared/models/repositories.filters.model';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   templateUrl: './repositories.component.html',
@@ -8,8 +8,10 @@ import { Component } from '@angular/core';
 })
 export class RepositoriesComponent {
 
+  search = signal<RepositoriesFilters>({});
+
   filter(filters: RepositoriesFilters){
-    console.log('filters', filters);
+    this.search.set(filters);
   }
 
 }

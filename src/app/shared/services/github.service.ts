@@ -10,6 +10,8 @@ const PER_PAGE_DEFAULT = 10;
 })
 export class GithubService {
 
+  apiUrl = environment.gitHubApiUrl;
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -30,7 +32,7 @@ export class GithubService {
       .set('per_page', perPage.toString());
 
     return this.http.get<RepositoriesDto>(
-      `${environment.gitHubApiUrl}/search/repositories`,
+      `${this.apiUrl}/search/repositories`,
       { params }
     );
   }

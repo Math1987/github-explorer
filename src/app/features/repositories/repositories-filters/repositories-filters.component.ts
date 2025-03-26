@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { map, Subject, takeUntil, tap } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CodeLanguagesAutocompleteComponent } from './code-language-autocomplete/code-languages-autocomplete.component';
 
 @Component({
   selector: 'app-repositories-filters',
@@ -14,7 +15,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    CodeLanguagesAutocompleteComponent
   ],
   templateUrl: './repositories-filters.component.html',
   styleUrl: './repositories-filters.component.scss'

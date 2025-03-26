@@ -1,0 +1,10 @@
+.filters-container {
+  display: flex;
+  flex-direction: row nowrap;
+  gap: 16px;
+  padding: 16px;
+
+  mat-form-field {
+    width: 100%;
+  }
+}

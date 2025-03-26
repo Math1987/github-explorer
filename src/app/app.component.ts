@@ -7,10 +7,11 @@ import { CodeLanguagesService } from './shared/services/code-languages.service';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
+  styleUrl: './app.component.scss',
+  templateUrl: './app.component.html',
   providers: [
     GithubService,
     CodeLanguagesService
   ],
-  template: '<router-outlet />',
 })
 export class AppComponent {}

@@ -2,14 +2,19 @@ import { extractFilters } from '@/app/shared/adapters/repositories.filters.adapt
 import { RepositoriesFiltersForm } from '@/app/shared/models/repositories.filters.form.model';
 import { RepositoriesFilters } from '@/app/shared/models/repositories.filters.model';
 import { Component, OnDestroy, output } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map, Subject, takeUntil, tap } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-repositories-filters',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   templateUrl: './repositories-filters.component.html',
   styleUrl: './repositories-filters.component.scss'

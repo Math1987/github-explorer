@@ -1,1 +1,8 @@
-<p>repositories-filters works!</p>
+<div class="filters-container" [formGroup]="formGroup">
+
+  <mat-form-field appearance="outline" class="filters-name">
+    <mat-label>Repository Name</mat-label>
+    <input test-selector="filters-name-input" matInput formControlName="name" placeholder="Enter repository name">
+  </mat-form-field>
+
+</div>

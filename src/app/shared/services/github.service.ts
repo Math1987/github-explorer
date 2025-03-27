@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { RepositoriesDto } from "@/app/shared/models/repositories.dto.model";
+import { CommitsDto } from "../models/commits.dto.model";
 
 const PER_PAGE_DEFAULT = 10;
 @Injectable({
@@ -36,5 +37,32 @@ export class GithubService {
       { params }
     );
   }
+
+    /**
+   * Search for commits based on query parameters
+   * @param query Search query string
+   * @param page Page number
+   * @param perPage Number of results per page
+   */
+    searchCommits(
+      query: string,
+      page: number = 0,
+      perPage: number = PER_PAGE_DEFAULT
+    ): Observable<CommitsDto> {
+      const params = new HttpParams()
+        .set('q', query)
+        .set('page', (page + 1).toString())
+        .set('per_page', perPage.toString());
+
+      return this.http.get<CommitsDto>(
+        `${this.apiUrl}/search/commits`,
+        {
+          params,
+          headers: {
+            'Accept': 'application/vnd.github.text-match+json'
+          }
+        }
+      );
+    }
 
 }

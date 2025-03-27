@@ -20,7 +20,11 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="['name', 'avatar', 'creationDate']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['name', 'avatar', 'creationDate'];"></tr>
+  <tr mat-row
+      *matRowDef="let row; columns: ['name', 'avatar', 'creationDate'];"
+      (click)="navigateToCommits(row)"
+      style="cursor: pointer;">
+  </tr>
 </table>
 
 <mat-paginator

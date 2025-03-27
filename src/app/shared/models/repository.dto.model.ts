@@ -3,6 +3,7 @@ export interface RepositoryDto {
   name: string;
   created_at: string;
   owner: {
+    login: string;
     avatar_url: string;
   };
 }

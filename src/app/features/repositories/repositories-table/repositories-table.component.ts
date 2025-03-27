@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { Component, effect, input, signal } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { take, tap } from 'rxjs';
 
 @Component({
@@ -32,7 +33,7 @@ export class RepositoriesTableComponent implements TableInterface<RepositoryTabl
   searchInitialized = false;
   search = input<RepositoriesFilters>({})
 
-  constructor(private githubService: GithubService){
+  constructor(private githubService: GithubService, private router: Router){
     this.initSearch();
   }
 
@@ -52,6 +53,10 @@ export class RepositoriesTableComponent implements TableInterface<RepositoryTabl
   onPageChange(pageEvent: PageEvent): void {
     this.pageSize.set(pageEvent.pageSize);
     this.loadData(pageEvent.pageIndex);
+  }
+
+  navigateToCommits(row: RepositoryTableRow): void {
+    this.router.navigate(['/commits', row.owner, row.name]);
   }
 
   private initSearch(){

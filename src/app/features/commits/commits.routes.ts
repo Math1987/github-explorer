@@ -3,7 +3,7 @@ import { CommitsComponent } from "./commits.component";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: ':owner/:repo',
     component: CommitsComponent
   }
 ]

@@ -3,6 +3,7 @@ import { RepositoryTableRow } from "../models/repository.table-row.model"
 
 export const extractRepositoryRow = (repo: RepositoryDto): RepositoryTableRow => {
   return {
+    owner: repo.owner.login,
     name: repo.name,
     avatar: repo.owner.avatar_url,
     creationDate: new Date(repo.created_at)

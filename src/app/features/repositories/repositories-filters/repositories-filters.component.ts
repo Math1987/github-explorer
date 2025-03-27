@@ -38,7 +38,8 @@ export class RepositoriesFiltersComponent implements OnDestroy {
     this.formGroup = this.formBuilder.group({
       name: '',
       language: '',
-      stars: 0
+      stars: 0,
+      issue: ''
     })
   }
 
@@ -49,6 +50,7 @@ export class RepositoriesFiltersComponent implements OnDestroy {
   private listenAndPerformChanges(){
     this.formGroup.valueChanges.pipe(
       takeUntil(this.destroy$),
+      tap(console.log),
       map(values => extractFilters(values)),
       debounceTime(DEBOUNCE_TIME),
       tap(filters => this.updateFilters(filters))

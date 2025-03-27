@@ -34,7 +34,12 @@ export class GithubService {
 
     return this.http.get<RepositoriesDto>(
       `${this.apiUrl}/search/repositories`,
-      { params }
+      {
+        params,
+        headers: {
+          'Accept': 'application/vnd.github.text-match+json'
+        }
+      }
     );
   }
 

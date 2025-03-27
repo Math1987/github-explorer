@@ -50,7 +50,7 @@ describe('RepositoriesFiltersComponent', () => {
     tick(DEBOUNCE_TIME - DEBOUNCE_TEST_LAPS);
     expect(component.filter.emit).not.toHaveBeenCalled();
     tick(DEBOUNCE_TEST_LAPS);
-    expect(component.filter.emit).toHaveBeenCalledWith({ name: 'test', language: '', stars: 0 })
+    expect(component.filter.emit).toHaveBeenCalledWith({ name: 'test', language: '', stars: 0, issue: '' })
   }))
 
   it('should emit filter with stars values after typing in the input', fakeAsync(() => {
@@ -61,7 +61,7 @@ describe('RepositoriesFiltersComponent', () => {
     tick(DEBOUNCE_TIME - DEBOUNCE_TEST_LAPS);
     expect(component.filter.emit).not.toHaveBeenCalled();
     tick(DEBOUNCE_TEST_LAPS);
-    expect(component.filter.emit).toHaveBeenCalledWith({ name: '', language: '', stars: 10 })
+    expect(component.filter.emit).toHaveBeenCalledWith({ name: '', language: '', stars: 10, issue: '' })
   }))
 
   it('should emit filter with language values after typing in the input', fakeAsync(() => {
@@ -72,7 +72,19 @@ describe('RepositoriesFiltersComponent', () => {
     tick(DEBOUNCE_TIME - DEBOUNCE_TEST_LAPS);
     expect(component.filter.emit).not.toHaveBeenCalled();
     tick(DEBOUNCE_TEST_LAPS);
-    expect(component.filter.emit).toHaveBeenCalledWith({ name: '', language: 'test', stars: 0 })
+    expect(component.filter.emit).toHaveBeenCalledWith({ name: '', language: 'test', stars: 0, issue: '' })
   }))
+
+  it('should emit filter with issue values after typing in the input', fakeAsync(() => {
+    spyOn(component.filter, 'emit');
+    const input = fixture.debugElement.query(By.css('input[test-selector="filters-issue-input"]')).nativeElement;
+    input.value = 'test';
+    input.dispatchEvent(new Event('input'));
+    tick(DEBOUNCE_TIME - DEBOUNCE_TEST_LAPS);
+    expect(component.filter.emit).not.toHaveBeenCalled();
+    tick(DEBOUNCE_TEST_LAPS);
+    expect(component.filter.emit).toHaveBeenCalledWith({ name: '', language: '', stars: 0, issue: 'test' })
+  }))
+
 
 });

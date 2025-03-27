@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { CommitsTableComponent } from './commits-table/commits-table.component';
 
 describe('CommitsComponent', () => {
   let component: CommitsComponent;
@@ -14,7 +15,7 @@ describe('CommitsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CommitsComponent],
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, CommitsFiltersComponent],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, CommitsFiltersComponent, CommitsTableComponent],
       providers: [{
         provide: ActivatedRoute,
         useValue: {

@@ -8,15 +8,15 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false
 })
 export class CommitsComponent {
-  author: string = '';
+  owner: string = '';
   repo: string = '';
   search = signal<string>('');
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.author = params['author'];
+      this.owner = params['owner'];
       this.repo = params['repo'];
     });
   }

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommitsComponent } from './commits.component';
 import { routes } from './commits.routes';
 import { CommitsFiltersComponent } from './commits-filters/commits-filters.component';
+import { CommitsTableComponent } from './commits-table/commits-table.component';
 
 
 
@@ -14,7 +15,8 @@ import { CommitsFiltersComponent } from './commits-filters/commits-filters.compo
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    CommitsFiltersComponent
+    CommitsFiltersComponent,
+    CommitsTableComponent
   ]
 })
 export class CommitsModule { }

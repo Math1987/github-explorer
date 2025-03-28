@@ -19,7 +19,5 @@ import { RepositoriesTableComponent } from './repositories-table/repositories-ta
   ]
 })
 export class RepositoriesModule {
-  constructor(){
-    console.log('ok')
-  }
+  constructor(){}
 }

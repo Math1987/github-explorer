@@ -12,12 +12,11 @@ export const routes: Routes = [
         path: 'commits',
         loadChildren: () => import('./features/commits/commits.module').then(m => m.CommitsModule),
       },
+      {
+        path: '**',
+        redirectTo: 'repos',
+        pathMatch: 'full'
+      }
     ]
   },
-  {
-    path: '**',
-    redirectTo: 'repos',
-    pathMatch: 'full'
-  }
-
 ];
